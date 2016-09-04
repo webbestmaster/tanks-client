@@ -1,0 +1,17 @@
+{
+  "name": "Tanks-Client",
+  "version": "0.1.0",
+  "description": "Tanks HTML5 Game",
+  "license": "MIT",
+  "repository": {
+    "type": "git"
+  },
+  "scripts": {
+    "dev-server": "lite-server -c lite-server-config.json",
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lite-server": "^2.2.2",
+    "webpack": "*"
+  }
+}
