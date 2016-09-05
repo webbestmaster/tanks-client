@@ -6,12 +6,17 @@
   "repository": {
     "type": "git"
   },
-  "scripts": {
-    "dev-server": "lite-server -c lite-server-config.json",
+  "scripts": {},
+  "dependencies": {
+    "css-loader": "^0.24.0",
+    "less-loader": "^2.2.3",
+    "node-sass": "^3.9.0",
+    "sass-loader": "^4.0.1",
+    "style-loader": "^0.13.1"
   },
-  "dependencies": {},
   "devDependencies": {
-    "lite-server": "^2.2.2",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.22.0",
     "webpack": "*"
   }
 }
