@@ -1,6 +1,6 @@
 # Tanks - client part
 
-## Run dev server: npm run dev-server
+## Create bind: webpack
 
 
 
