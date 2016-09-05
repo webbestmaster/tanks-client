@@ -37,8 +37,17 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.scss/,
+				test: /\.scss$/,
 				loader: ExtractTextPlugin.extract('style', 'css!sass')
+			},
+			{
+				test: /\.js$/,
+				loader: 'babel',
+				exclude: /(node_modules|bower_components)/,
+				query: {
+					presets: ['es2015'],
+					plugins: ['transform-runtime']
+				}
 			}
 		]
 	},
@@ -57,7 +66,6 @@ module.exports = {
 			template: 'index.html'
 		}),
 		new ExtractTextPlugin('main.css')
-
 	]
 
 };

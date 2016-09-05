@@ -1,6 +1,6 @@
-var module2 = require('./module2');
+import module2 from './module2';
 
-module.exports = function (string) {
+export default function (string) {
 
     console.log(string);
 

@@ -1,1 +1,1 @@
-module.exports = 'sdfasf';
+export default 'sdfasf';

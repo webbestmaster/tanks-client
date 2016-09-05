@@ -1,6 +1,6 @@
 "use strict";
 
-var module1 = require('./main/module1');
+import module1 from './main/module1';
 
 module1('I am module 1');
 
