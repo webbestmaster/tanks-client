@@ -48,13 +48,17 @@ module.exports = {
 					presets: ['es2015'],
 					plugins: ['transform-runtime']
 				}
+			},
+			{
+				test: /\.dot$/,
+				loader: 'dot'
 			}
 		]
 	},
 
 	resolve: {
 		modulesDirectories: ['', 'www', 'node_modules'],
-		extensions: ['', '.js', '.scss', '.css']
+		extensions: ['', '.js', '.scss', '.css', '.dot']
 	},
 
 	plugins: [
