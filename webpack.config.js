@@ -52,13 +52,17 @@ module.exports = {
 			{
 				test: /\.dot$/,
 				loader: 'dot'
+			},
+			{
+				test: /\.json$/,
+				loader: 'json'
 			}
 		]
 	},
 
 	resolve: {
 		modulesDirectories: ['', 'www', 'node_modules'],
-		extensions: ['', '.js', '.scss', '.css', '.dot']
+		extensions: ['', '.js', '.json', '.scss', '.css', '.dot']
 	},
 
 	plugins: [

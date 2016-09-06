@@ -1,11 +1,18 @@
 "use strict";
 
-import module1 from 'module1';
-
-import homeFn from 'templates/home';
-
-console.log(homeFn);
-
-module1('I am module 1');
+import collector from 'services/collector';
 
 
+// initialize i18n
+import I18n from 'services/i18n/i18n';
+collector.set('i18n', new I18n());
+
+
+// initialize routing
+import Router from 'core/router';
+var Backbone = require('backbone');
+new Router();
+
+
+// start app
+Backbone.history.start();
