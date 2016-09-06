@@ -77,3 +77,16 @@ module.exports = {
 	]
 
 };
+
+
+if (NODE_ENV === keys.env.prod) {
+	module.exports.plugins.push(
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				// warning: true,
+				drop_console: true,
+				unsafe: true
+			}
+		})
+	);
+}

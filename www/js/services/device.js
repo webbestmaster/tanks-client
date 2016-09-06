@@ -1,5 +1,7 @@
 var $ = require('jquery');
 
+import mediator from 'mediator';
+
 export default class Device {
 
 	constructor() {
@@ -58,20 +60,29 @@ export default class Device {
 
 		device.detectScreen();
 
+        mediator.publish('resize', {
+            width: device.get('width'),
+            height: device.get('height'),
+            orientation: device.get('orientation')
+        });
+
 	}
 
 	detectScreen() {
 
 		var device = this,
 			doc = device.get('doc'),
-			win = device.get('win');
+			win = device.get('win'),
+            width = doc.documentElement.clientWidth,
+            height = doc.documentElement.clientHeight,
+            orientation = width > height ? '_' : '|';
+
+        device.set('width', width);
+        device.set('height', height);
+        device.set('orientation', orientation);
 
 		device.set('isTouch', 'ontouchstart' in doc);
-
-		device.set('width', doc.documentElement.clientWidth);
-		device.set('height', doc.documentElement.clientHeight);
-
-		device.set('DPR', win.devicePixelRatio || 1);
+        device.set('DPR', win.devicePixelRatio || 1);
 
 	}
 

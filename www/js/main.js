@@ -4,6 +4,7 @@ var $ = require('jquery');
 
 import collector from 'services/collector';
 
+import mediator from 'services/mediator';
 
 // initialize i18n
 import I18n from 'services/i18n/i18n';
@@ -25,8 +26,6 @@ import Device from 'services/device';
 new Device();
 
 
-
 // start app
 Backbone.history.start();
-
 
