@@ -28,4 +28,10 @@ export default class I18n {
 		return this.lib[id];
 	}
 
+	destroy() {
+
+		this.lib = null;
+
+	}
+
 }
