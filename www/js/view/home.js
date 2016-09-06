@@ -1,15 +1,30 @@
 import BaseView from 'core/base-view';
-import template from 'services/template';
 
 export default BaseView.extend({
 
+	selectors: {
+
+		'$h1': 'h1'
+
+	},
+
 	initialize: function () {
 
-		var html = template('home', {dd: 4});
+		var view = this;
 
-		console.log(html);
+		BaseView.prototype.initialize.apply(view, arguments);
 
-		console.log('home view is run');
+		view.defineElement('home', {dd: 34});
+
+		view.show();
+
+		view.showAnimation();
+
+	},
+
+	showAnimation: function () {
+
+		console.log('show animation');
 
 	}
 

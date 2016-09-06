@@ -1,1 +1,6 @@
-<div class="div"><h1>I am home view {{= this.i18n.get('start') }} {{= it.dd }}</h1></div>
+
+
+<div class="div">
+	<h1>I am home view {{= this.i18n.get('start') }} {{= it.dd }}</h1>
+</div>
+

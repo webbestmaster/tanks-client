@@ -1,5 +1,7 @@
 "use strict";
 
+var $ = require('jquery');
+
 import collector from 'services/collector';
 
 
@@ -14,5 +16,17 @@ var Backbone = require('backbone');
 new Router();
 
 
+// save main node
+collector.set('$wrapper', $('.js-wrapper'));
+
+
+// initialize device
+import Device from 'services/device';
+new Device();
+
+
+
 // start app
 Backbone.history.start();
+
+
