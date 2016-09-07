@@ -27,5 +27,5 @@ new Device();
 
 
 // start app
-Backbone.history.start();
+Backbone.history.start({pushState:true,  root: window.location.pathname});
 

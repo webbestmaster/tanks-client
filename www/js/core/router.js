@@ -16,15 +16,21 @@ var Backbone = require('backbone');
  */
 
 import HomeView from 'view/home';
+import PageView from 'view/page';
 
 export default Backbone.Router.extend({
 
 	routes: {
-		'': 'home'
+		'': 'home',
+		'page': 'page'
 	},
 
 	home: function () {
 		new HomeView();
+	},
+
+	page: function () {
+		new PageView();
 	}
 
 });

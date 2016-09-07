@@ -18,7 +18,7 @@ export default BaseView.extend({
 
 		BaseView.prototype.initialize.apply(view, arguments);
 
-		view.defineElement('home', {dd: 34});
+		view.defineElement('home', {dd: '!!!!!!'});
 
 		view.show();
 
@@ -34,8 +34,6 @@ export default BaseView.extend({
 				.to('h1', 1.8, {y: 100, ease: Back.easeOut.config(1.4), force3D: true})
 				.to('h1', 1.8, {y: 50, ease: Back.easeOut.config(1.4), force3D: true})
 		);
-
-		setTimeout(()=> this.killAllTweens(), 700);
 
 		console.log('show animation');
 
