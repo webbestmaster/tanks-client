@@ -1,5 +1,7 @@
 import BaseView from 'core/base-view';
 
+var TweenMax = require('gsap');
+
 export default BaseView.extend({
 
 	selectors: {
@@ -23,6 +25,8 @@ export default BaseView.extend({
 	},
 
 	showAnimation: function () {
+
+		TweenMax.staggerFromTo('h1', 1.8, {y: 100}, {y: 0, ease: Back.easeOut.config(1.4), force3D: true}, 0.1);
 
 		console.log('show animation');
 
