@@ -25,6 +25,17 @@ collector.set('$wrapper', $('.js-wrapper'));
 import Device from 'services/device';
 new Device();
 
+setTimeout(() => {
+	mediator.publish('route', 'page');
+}, 2000);
+
+setTimeout(() => {
+	mediator.publish('route', ':back');
+
+	// Backbone.history.history.back();
+	// mediator.publish('route', 'page');
+}, 4000);
+
 
 // start app
 Backbone.history.start({pushState:true,  root: window.location.pathname});
