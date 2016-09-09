@@ -6,7 +6,7 @@ import template from 'services/template';
 var Backbone = require('backbone');
 var _ = require('lodash');
 
-var idCounter = 0;
+import util from 'services/util';
 
 export default Backbone.View.extend({
 
@@ -21,6 +21,14 @@ export default Backbone.View.extend({
 
 		view._tween = {};
 
+		view._bindEventListeners();
+
+	},
+
+	_bindEventListeners: function () {
+
+
+
 	},
 
 	defineElement: function (templateName, data) {
@@ -29,7 +37,7 @@ export default Backbone.View.extend({
 
 		view.setElement(template(templateName, data));
 
-		view.defineBySelectors();
+		view._defineBySelectors();
 
 		return view;
 
@@ -45,15 +53,16 @@ export default Backbone.View.extend({
 
 	},
 
-	defineBySelectors: function () {
+	_defineBySelectorsFunction: function (selector, $nodeKey) {
+		var view = this;
+		view.set($nodeKey, view.$el.find(selector));
+	},
 
-		var view = this,
-			$el = view.$el,
-			selectors = this.selectors || {};
+	_defineBySelectors: function () {
 
-		Object.keys(selectors).forEach(function (key) {
-			view.set(key, $el.find(selectors[key]));
-		});
+		var view = this;
+
+		_.each(view.selectors || {}, (selector, $nodeKey) => view._defineBySelectorsFunction(selector, $nodeKey));
 
 		return view;
 
@@ -68,7 +77,7 @@ export default Backbone.View.extend({
 
 		// check if id has not been passed
 		if (!tween) {
-			return view.setTween(view.createId(), id);
+			return view.setTween(util.createId(), id);
 		}
 
 		view.killTweenById(id);
@@ -119,9 +128,6 @@ export default Backbone.View.extend({
 	//----
 	// helpers
 	//----
-	createId: function () {
-		return idCounter += 1;
-	},
 
 	get: function (key) {
 		return this._attr[key];
