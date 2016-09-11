@@ -11,6 +11,18 @@ import mediator from 'services/mediator';
 
 export default Backbone.View.extend({
 
+	baseEvents: {
+
+		'.js-route': 'domRouteTo'
+
+	},
+
+	domRouteTo: function () {
+
+		console.log('!!!!!!')
+
+	},
+
 	//----
 	// initialization
 	//----
@@ -63,7 +75,7 @@ export default Backbone.View.extend({
 
 		view._defineBySelectors();
 
-		view.delegateEvents();
+		view.delegateEvents(_.extend({}, view.events || {}, this.baseEvents));
 
 		return view;
 

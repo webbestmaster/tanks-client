@@ -36,7 +36,6 @@ setTimeout(() => {
 }, 4000);
 */
 
-
 // start app
 Backbone.history.start({pushState:true,  root: window.location.pathname});
 
