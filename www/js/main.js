@@ -4,8 +4,6 @@ var $ = require('jquery');
 
 import collector from 'services/collector';
 
-import mediator from 'services/mediator';
-
 // initialize i18n
 import I18n from 'services/i18n/i18n';
 collector.set('i18n', new I18n());
@@ -23,8 +21,9 @@ collector.set('$wrapper', $('.js-wrapper'));
 
 // initialize device
 import Device from 'services/device';
-new Device();
+collector.set('device', new Device());
 
+/*
 setTimeout(() => {
 	mediator.publish('route', 'page');
 }, 2000);
@@ -35,6 +34,7 @@ setTimeout(() => {
 	// Backbone.history.history.back();
 	// mediator.publish('route', 'page');
 }, 4000);
+*/
 
 
 // start app

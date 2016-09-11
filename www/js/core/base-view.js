@@ -7,6 +7,7 @@ var Backbone = require('backbone');
 var _ = require('lodash');
 
 import util from 'services/util';
+import mediator from 'services/mediator';
 
 export default Backbone.View.extend({
 
@@ -21,23 +22,48 @@ export default Backbone.View.extend({
 
 		view._tween = {};
 
+		mediator.publish('hide-main-view');
+
 		view._bindEventListeners();
 
 	},
 
 	_bindEventListeners: function () {
 
+		var view = this;
 
+		mediator.installTo(view);
+
+		view.subscribe('hide-main-view', view.hide);
+
+	},
+
+	hide: function () {
+
+		var view = this;
+
+        view.unsubscribe();
+        view.undelegateEvents();
+        mediator.uninstallFrom(view);
+
+		view.reverseAllTweens().then(() => view.destroyView());
 
 	},
 
 	defineElement: function (templateName, data) {
 
-		var view = this;
+		var view = this,
+            device = collector.get('device');
 
 		view.setElement(template(templateName, data));
 
+        view.$el.width(device.get('width'));
+        view.$el.height(device.get('height'));
+        view.$el.addClass('view-wrapper');
+
 		view._defineBySelectors();
+
+		view.delegateEvents();
 
 		return view;
 
@@ -68,7 +94,42 @@ export default Backbone.View.extend({
 
 	},
 
-	//----
+    destroyView: function () {
+
+        var view = this;
+
+        view.killAllTweens();
+
+        // view.destroyAnimations();
+
+        view.empty();
+
+        view.$el.removeData().unbind().remove().empty(); // use with jQuery
+        // view.$el.remove().empty();
+
+        // view.remove();
+
+        return Backbone.View.prototype.remove.call(view);
+
+    },
+
+
+    empty: function () {
+
+        var attr = this.attr,
+            key;
+
+        for (key in attr) {
+            attr[key] = null;
+        }
+
+        this.attr = {};
+
+        return this;
+
+    },
+
+    //----
 	//	tweens
 	//----
 	setTween: function (id, tween) {
@@ -101,6 +162,7 @@ export default Backbone.View.extend({
 
 		if (tween) {
 			view.killTween(tween);
+            view._tween[id] = null;
 		}
 
 	},
@@ -114,14 +176,22 @@ export default Backbone.View.extend({
 	},
 
 	reverseTween: function (tween) {
-		return tween && tween.reverse();
+		return new Promise(function (resolve, reject) {
+			tween.vars.onReverseComplete = resolve;
+			tween.reverse();
+		});
 	},
 
 	reverseAllTweens: function () {
 
-		var view = this;
+		var view = this,
+			promises = [];
 
-		_.each(view._tween, view.reverseTween);
+		_.each(view._tween, function (tween) {
+			promises.push(view.reverseTween(tween))
+		});
+
+		return Promise.all(promises);
 
 	},
 

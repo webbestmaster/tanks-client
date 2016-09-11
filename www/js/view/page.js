@@ -30,9 +30,9 @@ export default BaseView.extend({
 
 		this.setTween(
 			(new TimelineLite())
-				.to('h1', 0, {y: 200})
-				.to('h1', 1.8, {y: 100, ease: Back.easeOut.config(1.4), force3D: true})
-				.to('h1', 1.8, {y: 50, ease: Back.easeOut.config(1.4), force3D: true})
+				.to(this.get('$h1'), 0, {y: 200})
+				.to(this.get('$h1'), 1.8, {y: 100, ease: Back.easeOut.config(1.4), force3D: true})
+				.to(this.get('$h1'), 1.8, {y: 50, ease: Back.easeOut.config(1.4), force3D: true})
 		);
 
 		console.log('show animation');

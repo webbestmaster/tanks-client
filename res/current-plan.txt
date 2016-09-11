@@ -1,0 +1,4 @@
+когда создаётся вьюшка то
+
+1 - publish - hide-main-view
+2 - subscribe - for hide-main-view
