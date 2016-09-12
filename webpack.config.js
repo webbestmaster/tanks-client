@@ -20,10 +20,13 @@ module.exports = {
 	context: __dirname + '/www',
 
 	// entry: './home', // simple variant of 'entry: {..<several entry points>..}'
-	entry: ['./js/main', './css/main'],
+	entry: {
+		'lib': './js/lib', // just a kostyl'
+		'main': ['./js/main', './css/main']
+	},
 	output: {
 		path: __dirname + '/dist', // relative path is available, bot not recommended
-		filename: 'build.js'
+		filename: '[name].js'
 	},
 
 	watch: NODE_ENV === keys.env.dev,
@@ -73,7 +76,11 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: 'index.html'
 		}),
-		new ExtractTextPlugin('main.css')
+		new ExtractTextPlugin('main.css'),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'common',
+			minChunks: 2
+		})
 	]
 
 };
