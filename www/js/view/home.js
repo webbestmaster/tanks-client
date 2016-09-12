@@ -8,6 +8,10 @@ var gsap = require('gsap'),
 
 export default BaseView.extend({
 
+	events: {
+
+	},
+
 	selectors: {
 
 		'$h1': 'h1'
@@ -25,10 +29,6 @@ export default BaseView.extend({
 		view.show();
 
 		view.showAnimation();
-
-		setTimeout(()=> {
-			mediator.publish('route', 'page');
-		}, 3000)
 
 	},
 

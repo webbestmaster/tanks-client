@@ -12,15 +12,11 @@ import mediator from 'services/mediator';
 export default Backbone.View.extend({
 
 	baseEvents: {
-
-		'.js-route': 'domRouteTo'
-
+		'click [data-route]': 'domRoute'
 	},
 
-	domRouteTo: function () {
-
-		console.log('!!!!!!')
-
+	domRoute: function (e) {
+		mediator.publish('route', e.target.getAttribute('data-route'));
 	},
 
 	//----

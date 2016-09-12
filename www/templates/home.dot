@@ -1,6 +1,8 @@
 
 
 <div class="div">
+	<div data-route="page">to page</div>
+	<div data-route=":back">back</div>
 	<h1>I am home view {{= this.i18n.get('start') }} {{= it.dd }}</h1>
 </div>
 
