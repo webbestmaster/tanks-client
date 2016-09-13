@@ -43,6 +43,17 @@ export default Backbone.View.extend({
 		mediator.installTo(view);
 
 		view.subscribe('hide-main-view', view.hide);
+		view.subscribe('resize', view._onResize);
+
+	},
+
+	_onResize: function () {
+
+		var view = this,
+			device = collector.get('device');
+
+		view.$el.width(device.get('width'));
+		view.$el.height(device.get('height'));
 
 	},
 
