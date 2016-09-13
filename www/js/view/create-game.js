@@ -18,7 +18,7 @@ export default BaseView.extend({
 
 		BaseView.prototype.initialize.apply(view, arguments);
 
-		view.defineElement('home', {dd: '!!!!!!'});
+		view.defineTemplate('create-game');
 
 		view.show();
 

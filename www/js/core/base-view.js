@@ -69,7 +69,7 @@ export default Backbone.View.extend({
 
 	},
 
-	defineElement: function (templateName, data) {
+	defineTemplate: function (templateName, data) {
 
 		var view = this,
             device = collector.get('device');

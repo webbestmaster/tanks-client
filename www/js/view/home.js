@@ -1,7 +1,5 @@
 import BaseView from 'core/base-view';
 
-import mediator from 'services/mediator';
-
 var gsap = require('gsap'),
 	TimelineLite = gsap.TimelineLite,
 	Back = gsap.Back;
@@ -24,7 +22,7 @@ export default BaseView.extend({
 
 		BaseView.prototype.initialize.apply(view, arguments);
 
-		view.defineElement('home', {dd: 34});
+		view.defineTemplate('home', {dd: 34});
 
 		view.show();
 

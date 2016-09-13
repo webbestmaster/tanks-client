@@ -6,7 +6,7 @@
 
 
 
-	<h1 data-route="create-game">{{= this.i18n.get('start') }}</h1>
+	<h1 data-route="create-game">{{= this.i18n.get('create-game') }}</h1>
 
 
 
