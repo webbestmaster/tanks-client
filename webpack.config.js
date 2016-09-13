@@ -21,19 +21,20 @@ module.exports = {
 
 	// entry: './home', // simple variant of 'entry: {..<several entry points>..}'
 	entry: {
-		'lib': './js/lib', // just a kostyl'
+		'common': './js/common',
 		'main': ['./js/main', './css/main']
 	},
 	output: {
 		path: __dirname + '/dist', // relative path is available, bot not recommended
-		filename: '[name].js'
+		filename: '[name].js',
+		library: '[name]'
 	},
 
 	watch: NODE_ENV === keys.env.dev,
 
-	// watchOptions: {
-	// 	aggregateTimeout: 100
-	// },
+	watchOptions: {
+		aggregateTimeout: 100
+	},
 
 	devtool: NODE_ENV === keys.env.dev ? 'source-map' : null,
 
@@ -78,8 +79,7 @@ module.exports = {
 		}),
 		new ExtractTextPlugin('main.css'),
 		new webpack.optimize.CommonsChunkPlugin({
-			name: 'common',
-			minChunks: 2
+			name: 'common'
 		})
 	]
 
