@@ -4,6 +4,7 @@
 1) webpack: [sudo] npm i -g webpack
 
 ## Create bind: webpack
+## Dev run: npm start
 
 
 
