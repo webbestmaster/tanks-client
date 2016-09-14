@@ -1,6 +1,6 @@
 
 
-<div class="div">
+<div>
 	<div data-route="page">to page</div>
 	<div data-route=":back">back</div>
 

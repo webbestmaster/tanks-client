@@ -7,12 +7,14 @@ import mediator from 'services/mediator';
 
 import HomeView from 'view/home';
 import CreateGameView from 'view/create-game';
+import GameView from 'view/game';
 
 export default Backbone.Router.extend({
 
 	routes: {
 		'': 'home',
-		'create-game': 'createGame'
+		'create-game': 'createGame',
+		'game': 'game',
 	},
 
 	home: function () {
@@ -21,6 +23,10 @@ export default Backbone.Router.extend({
 
 	createGame: function () {
 		new CreateGameView();
+	},
+
+	game: function () {
+		new GameView();
 	},
 
 	initialize: function () {
