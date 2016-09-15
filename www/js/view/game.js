@@ -22,7 +22,7 @@ export default BaseView.extend({
 
 		BaseView.prototype.initialize.apply(view, arguments);
 
-		view.defineTemplate('game', {dd: 34});
+		view.defineTemplate('game');
 
 		view.show();
 

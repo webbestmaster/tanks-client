@@ -206,9 +206,7 @@ export default Backbone.View.extend({
 		var view = this,
 			promises = [];
 
-		_.each(view._tween, function (tween) {
-			promises.push(view.reverseTween(tween))
-		});
+		_.each(view._tween, (tween) => promises.push(view.reverseTween(tween)));
 
 		return Promise.all(promises);
 

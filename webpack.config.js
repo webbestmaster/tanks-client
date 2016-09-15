@@ -1,10 +1,21 @@
 "use strict";
 
+var path = require('path');
+
 var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
+// Phaser webpack config
+var phaserModule = path.join(__dirname, '/node_modules/phaser/');
+var phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
+var pixi = path.join(phaserModule, 'build/custom/pixi.js');
+var p2 = path.join(phaserModule, 'build/custom/p2.js');
+
+
 
 const keys = {
 	env: {
@@ -52,7 +63,8 @@ module.exports = {
 				exclude: /(node_modules|bower_components)/,
 				query: {
 					presets: ['es2015'],
-					plugins: ['transform-runtime']
+					plugins: ['transform-runtime'],
+					compact: false
 				}
 			},
 			{
@@ -62,13 +74,21 @@ module.exports = {
 			{
 				test: /\.json$/,
 				loader: 'json'
-			}
+			},
+			{ test: /pixi\.js/, loader: 'expose?PIXI' },
+			{ test: /phaser-split\.js$/, loader: 'expose?Phaser' },
+			{ test: /p2\.js/, loader: 'expose?p2' }
 		]
 	},
 
 	resolve: {
 		modulesDirectories: ['', 'www', 'node_modules'],
-		extensions: ['', '.js', '.json', '.scss', '.css', '.dot']
+		extensions: ['', '.js', '.json', '.scss', '.css', '.dot'],
+		alias: {
+			'phaser': phaser,
+			'pixi': pixi,
+			'p2': p2
+		}
 	},
 
 	plugins: [
